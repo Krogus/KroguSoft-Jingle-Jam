@@ -24,108 +24,48 @@ public class ObjectRotation : MonoBehaviour
     public Sprite WalkBottomRight;
 
     public GameObject Rotato; //This is the OBJECT that returns the ROTATION
-
-    public int Rotation;
-
+    int Rotation;
     public Animator _animator; //This is the ANIMATOR that will change the VISUALS of the SPRITE
-
-    /*
-    public bool Moving = false;
-
-    private IEnumerator CheckMoving()
-    {
-        Vector3 startPosition = transform.position;
-        yield return new WaitForSeconds(1f);
-        Vector3 finalPosition = transform.position;
-
-        if (startPosition.x != finalPosition.x || startPosition.y != finalPosition.y || startPosition.z != finalPosition.z)
-        {
-            Moving = true;
-        }
-    }
-    */
-
-
 
     // Update is called once per frame
     void Update()
     {
-        //ANIMATOR SETUP
-        //UP
-        if (Rotato.transform.eulerAngles.y >= 0 && Rotato.transform.eulerAngles.x <= 15)
+        switch (((int)Rotato.transform.eulerAngles.y + 14) / 30)
         {
-            Rotation = 10;
-            _animator.SetInteger("Rotation", Rotation);
+            case 0:
+                Rotation = 10;
+                break;
+            case 1:
+            case 2:
+                Rotation = 20;
+                break;
+            case 3:
+                Rotation = 30;
+                break;
+            case 4:
+            case 5:
+                Rotation = 40;
+                break;
+            case 6:
+                Rotation = 50;
+                break;
+            case 7:
+            case 8:
+                Rotation = 60;
+                break;
+            case 9:
+                Rotation = 70;
+                break;
+            case 10:
+            case 11:
+                Rotation = 80;
+                break;
+            case 12:
+                Rotation = 10;
+                break;
+            default:
+                break;
         }
-        if (Rotato.transform.eulerAngles.y >= 345 && Rotato.transform.eulerAngles.y <= 360)
-        {
-            Rotation = 10;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //TOPRIGHT
-        if (Rotato.transform.eulerAngles.y >= 15 && Rotato.transform.eulerAngles.y <= 75)
-        {
-            Rotation = 20;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //RIGHT
-        if (Rotato.transform.eulerAngles.y >= 75 && Rotato.transform.eulerAngles.y <= 105)
-        {
-            Rotation = 30;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //BOTTOMRIGHT
-        if (Rotato.transform.eulerAngles.y >= 105 && Rotato.transform.eulerAngles.y <= 165)
-        {
-            Rotation = 40;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //DOWN
-        if (Rotato.transform.eulerAngles.y >= 165 && Rotato.transform.eulerAngles.y <= 195)
-        {
-            Rotation = 50;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //BOTTOMLEFT
-        if (Rotato.transform.eulerAngles.y >= 195 && Rotato.transform.eulerAngles.y <= 255)
-        {
-            Rotation = 60;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //LEFT
-        if (Rotato.transform.eulerAngles.y >= 255 && Rotato.transform.eulerAngles.y <= 285)
-        {
-            Rotation = 70;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-        //UPPERLEFT
-        if (Rotato.transform.eulerAngles.y >= 285 && Rotato.transform.eulerAngles.y <= 345)
-        {
-            Rotation = 80;
-            _animator.SetInteger("Rotation", Rotation);
-        }
-
-    /*
-
-        if (Input.GetKey("a") || Input.GetKey("w") || Input.GetKey("s") || Input.GetKey("d"))
-        {
-            _animator.SetBool("Moving", true);
-            //print("true");
-        }
-
-        if (!(Input.GetKey("a")) && !(Input.GetKey("w")) && !(Input.GetKey("s")) && !(Input.GetKey("d")))
-        {
-            _animator.SetBool("Moving", false);
-
-            //print("false");
-        }
-
-    */
-
-        //print(_animator.GetBool("Moving"));
-
-
-
-
+        _animator.SetInteger("Rotation", Rotation);
     }
 }
