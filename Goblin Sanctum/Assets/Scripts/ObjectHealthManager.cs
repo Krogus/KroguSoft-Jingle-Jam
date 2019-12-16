@@ -27,7 +27,7 @@ public class ObjectHealthManager : MonoBehaviour
         }
     }
 
-    public void HurtEnemy(int damage)
+    public void DamageObject(int damage)
     {
         currentHealth -= damage;
     }
