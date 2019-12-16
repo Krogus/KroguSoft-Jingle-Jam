@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\HurtPlayer.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\MeleeController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\MeleeHitBoxController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\NpcLoitering.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerHealthManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerJump.cs" />
