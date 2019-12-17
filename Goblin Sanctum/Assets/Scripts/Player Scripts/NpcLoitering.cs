@@ -9,18 +9,21 @@ public class NpcLoitering : MonoBehaviour
 {
     public float speed = 5;
     public float directionChangeInterval = 1;
-    public float maxHeadingChange = 30;
+    public float walkDistance = 10;
 
     CharacterController controller;
     float heading;
+    bool isColliding;
+    Vector3 prevRotation;
+    Vector3 startingPos;
     Vector3 targetRotation;
 
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-
+        startingPos = transform.position;
         // Set random initial rotation
-        heading = Random.Range(0, 360);
+        heading = 45 * Random.Range(0, 7);
         transform.eulerAngles = new Vector3(0, heading, 0);
 
         StartCoroutine(NewHeading());
@@ -31,6 +34,7 @@ public class NpcLoitering : MonoBehaviour
         transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
         var forward = transform.TransformDirection(Vector3.forward);
         controller.SimpleMove(forward * speed);
+        prevRotation = targetRotation;
     }
 
     /// <summary>
@@ -51,9 +55,26 @@ public class NpcLoitering : MonoBehaviour
     /// </summary>
     void NewHeadingRoutine()
     {
-        var floor = Mathf.Clamp(heading - maxHeadingChange, 0, 360);
-        var ceil = Mathf.Clamp(heading + maxHeadingChange, 0, 360);
-        heading = Random.Range(floor, ceil);
-        targetRotation = new Vector3(0, heading, 0);
+        heading = (heading + (45 * (1 - Random.Range(0, 2)))) % 360;
+        if (Vector3.Distance(transform.position, startingPos) <= walkDistance && !isColliding)
+        {
+            targetRotation = new Vector3(0, heading, 0);
+        }
+        else
+        {
+            heading = (180 + prevRotation.y) % 360;
+            targetRotation = new Vector3(0, heading, 0);
+            isColliding = false;
+        }
+        
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            isColliding = true;
+        }
+    }
+
 }
