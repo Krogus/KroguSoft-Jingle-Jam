@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.tag == "Breakable")
         {
             print("HIT");
-            other.gameObject.GetComponent<ObjectHealthManager>().HurtEnemy(damageToGive);
+            other.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damageToGive);
             Destroy(gameObject);
         }
 
