@@ -55,26 +55,27 @@ public class NpcLoitering : MonoBehaviour
     /// </summary>
     void NewHeadingRoutine()
     {
-        heading = (heading + (45 * (1 - Random.Range(0, 2)))) % 360;
+        heading = (heading + (45 * (1 - Random.Range(0, 2))) + 360) % 360;
         if (Vector3.Distance(transform.position, startingPos) <= walkDistance && !isColliding)
         {
             targetRotation = new Vector3(0, heading, 0);
         }
         else
         {
-            heading = (180 + prevRotation.y) % 360;
+            //heading = the absolute value of the angle between the current position and the starting position, 
+            heading = (((int)Vector3.SignedAngle(startingPos, transform.position, Vector3.up) / 45) * 45 + 360) % 360;
             targetRotation = new Vector3(0, heading, 0);
             isColliding = false;
         }
-        
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
             isColliding = true;
         }
+
     }
 
 }
