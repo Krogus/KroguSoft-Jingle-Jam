@@ -6,9 +6,10 @@ public class EnemyAggro : MonoBehaviour
 {
 
     public float RangeCheckInterval = 1;
-    public float AggroRadius = 1;
-    public float DeAggroRadius = 4;
+    public float AggroRadius = 4;
+    public float DeAggroRadius = 6;
     public float MoveSpeed = 1;
+    public float attackRange = .5f;
     bool isAggro = false;
     Vector3 targetPos;
 
@@ -25,15 +26,22 @@ public class EnemyAggro : MonoBehaviour
         {
             targetPos = GameObject.Find("Player").transform.position;
             transform.LookAt(targetPos);
-            float step = MoveSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+            transform.eulerAngles = new Vector3(0, ((int)transform.eulerAngles.y / 45) * 45, 0);
+            if (Vector3.Distance(targetPos, transform.position) >= attackRange)
+            {
+                float step = MoveSpeed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+            }
         }
     }
 
     IEnumerator CheckAggroRange()
     {
-        CheckAggroRangeRoutine();
-        yield return new WaitForSeconds(RangeCheckInterval);
+        while (true)
+        {
+            CheckAggroRangeRoutine();
+            yield return new WaitForSeconds(RangeCheckInterval);
+        }
     }
 
     private void CheckAggroRangeRoutine()

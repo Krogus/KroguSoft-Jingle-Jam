@@ -810,9 +810,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangeCheckInterval: 1
-  AggroRadius: 9
-  DeAggroRadius: 10
-  MoveSpeed: 0.2
+  AggroRadius: 6
+  DeAggroRadius: 8
+  MoveSpeed: 0.75
 --- !u!1 &1848864076
 GameObject:
   m_ObjectHideFlags: 0
