@@ -65,6 +65,7 @@
     <Compile Include="Assets\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Enemy\DeadBug.cs" />
     <Compile Include="Assets\Scripts\Enemy\DeadPig.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAggro.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyGravity.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHealthManager.cs" />
